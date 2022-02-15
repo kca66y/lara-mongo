@@ -3,7 +3,7 @@
 laravel 8.*
 mongoDB
 
-##FAQ
+## FAQ
 
 Из-за проблем с совместимостью mongoDB и Laravel Passport пришлось написать команду - 
 ```
