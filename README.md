@@ -24,3 +24,14 @@ php artisan devices:getState
 или JSON
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/11383483-62870ea8-3f56-4b52-9e23-dad998a61894?action=collection%2Ffork&collection-url=entityId%3D11383483-62870ea8-3f56-4b52-9e23-dad998a61894%26entityType%3Dcollection%26workspaceId%3D6af69171-b73a-437c-b967-1d6d7dc8c7eb)
+
+## PS
+Не забудьте добавить в кронтаб команду по инструкции:
+```
+crontab -e
+```
+добавить в конце запись
+```
+* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+```
+где path-to-your-project - это путь к проекту на сервере
