@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Api\Device\State;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use JetBrains\PhpStorm\ArrayShape;
 
-class RegisterRequest extends FormRequest
+class SetRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +15,7 @@ class RegisterRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return (bool)Auth::user();
     }
 
     /**
@@ -22,13 +23,11 @@ class RegisterRequest extends FormRequest
      *
      * @return array
      */
-    #[ArrayShape(['name' => "string", 'email' => "string", 'password' => "string"])]
+    #[ArrayShape(['state' => "string"])]
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'state' => 'bool|required'
         ];
     }
 }

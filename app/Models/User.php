@@ -3,10 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Collection;
 use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Jenssegers\Mongodb\Relations\BelongsToMany;
 use Laravel\Passport\HasApiTokens;
 
+/**
+ * @property Collection|array devices
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -37,7 +42,12 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
+    protected     $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function devices(): BelongsToMany
+    {
+        return $this->belongsToMany(Device::class);
+    }
 }
